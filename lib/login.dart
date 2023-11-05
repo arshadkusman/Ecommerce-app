@@ -154,19 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                       "Dont have an account? ",
                       style: TextStyle(fontSize: 16),
                     ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     log("go to registration");
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) {
-                    //           return registraionPage();
-                    //         },
-                    //       ),
-                    //     );
-                    //   },
-                    // )
+                    
                   ],
                 ),
               ]),
