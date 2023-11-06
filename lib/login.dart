@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
+
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:sample/constants.dart';
 import 'package:sample/registration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +21,55 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    _loadCounter();
+  }
+
+  void _loadCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    log("isLoggedIn = " + isLoggedIn.toString());
+    if (isLoggedIn) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
+    }
+  }
+
+  login(String username, String password) async {
+    print('webservice');
+    print(username);
+    print(password);
+    var result;
+    final Map<String, dynamic> loginData = {
+      'username': username,
+      'password': password,
+    };
+
+    final response = await http.post(
+      Uri.parse("https://bootcamp.cyralearnings.com/registration.php"),
+      body: loginData,
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      if (response.body.contains("success")) {
+        log("registration successfully completed");
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setBool("isLoggedIn", true);
+        prefs.setString("username", username);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return HomePage();
+          },
+        ));
+      } else {
+        log("Login Failed");
+      }
+    } else {
+      result = {log(json.decode(response.body)['error'].toString())};
+    }
+    return result;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -126,8 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextButton(
                             style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)
-                                  ),
+                                  borderRadius: BorderRadius.circular(20)),
                               primary: Colors.white,
                               backgroundColor: maincolor,
                             ),
@@ -135,6 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                               if (_formkey.currentState!.validate()) {
                                 log("username = " + username.toString());
                                 log("password =" + password.toString());
+                                login(username.toString(), password.toString());
                               }
                             },
                             child: Text(
@@ -170,10 +223,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         "Go To Register",
                         style: TextStyle(
-                          fontSize: 16,
-                          color: maincolor,
-                          fontWeight: FontWeight.bold
-                        ),
+                            fontSize: 16,
+                            color: maincolor,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
