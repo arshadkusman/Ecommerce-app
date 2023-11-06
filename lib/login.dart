@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sample/constants.dart';
-import 'package:flutter/widgets.dart';
+import 'package:sample/registration.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -59,9 +59,9 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration.collapsed(
                             hintText: 'username',
                           ),
-                          onChanged: (Text) {
+                          onChanged: (text) {
                             setState(() {
-                              username = Text;
+                              username = text;
                             });
                           },
                           validator: (value) {
@@ -95,9 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration.collapsed(
                             hintText: 'password',
                           ),
-                          onChanged: (Text) {
+                          onChanged: (text) {
                             setState(() {
-                              password = Text;
+                              password = text;
                             });
                           },
                           validator: (value) {
@@ -119,14 +119,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       )
                     : Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Container(
                           width: MediaQuery.of(context).size.width / 2,
                           height: 50,
                           child: TextButton(
                             style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20)
+                                  ),
                               primary: Colors.white,
                               backgroundColor: maincolor,
                             ),
@@ -138,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             child: Text(
                               "Login",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
                               ),
@@ -154,7 +155,27 @@ class _LoginPageState extends State<LoginPage> {
                       "Dont have an account? ",
                       style: TextStyle(fontSize: 16),
                     ),
-                    
+                    GestureDetector(
+                      onTap: () {
+                        log("go to registration");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return RegistrationPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Go To Register",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: maincolor,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ]),
