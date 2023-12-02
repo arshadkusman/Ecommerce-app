@@ -8,6 +8,8 @@ import 'package:sample/login.dart';
 import 'package:http/http.dart' as http;
 
 class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({super.key});
+
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
 }
@@ -41,7 +43,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return LoginPage();
+            return  LoginPage();
           },
         ));
       } else {
@@ -59,10 +61,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               "Register Account",
               style: TextStyle(
                 color: Colors.black,
@@ -70,22 +72,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text("complete your details \n"),
-            SizedBox(height: 28),
+            const Text("complete your details \n"),
+            const SizedBox(height: 28),
             Form(
               key: _formkey,
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: Color(0xffE8E8E8),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      decoration: const BoxDecoration(
+                        color: Color(0xffE8E8E8),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                           child: TextFormField(
                             onChanged: (text) {
@@ -93,17 +96,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 name = text;
                               });
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                InputDecoration.collapsed(
-                                  hintText: 'Name'
-                                  ),
+                                const InputDecoration.collapsed(hintText: 'Name'),
                             validator: (value) {
-                              if(value!.isEmpty) {
-                                return 'enter your name';
+                              if (value!.isEmpty) {
+                                return "enter your name";
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -111,15 +113,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                           child: TextFormField(
                             onChanged: (text) {
@@ -130,33 +132,34 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             keyboardType: TextInputType.phone,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'enter your phone number';
+                                return "enter your phone number";
                               } else if (value.length > 10 ||
                                   value.length < 10) {
-                                return 'please enter a valid phone number';
+                                return "please enter a valid phone number";
                               }
+                              return null;
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                InputDecoration.collapsed(hintText: 'phone'),
+                                const InputDecoration.collapsed(hintText: 'phone'),
                           ),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 100,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                            const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                         child: Center(
                           child: TextFormField(
                             maxLines: 4,
@@ -165,15 +168,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 address = text;
                               });
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                InputDecoration.collapsed(hintText: 'address'),
+                                const InputDecoration.collapsed(hintText: 'address'),
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'enter your address';
+                                return "enter your address";
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -181,15 +185,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                           child: TextFormField(
                             onChanged: (text) {
@@ -197,15 +201,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 username = text;
                               });
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                InputDecoration.collapsed(hintText: 'username'),
+                                const InputDecoration.collapsed(hintText: 'username'),
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'enter your username';
+                                return "enter your username";
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -213,15 +218,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Center(
                           child: TextFormField(
                             onChanged: (text) {
@@ -231,23 +236,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'enter your password';
+                                return "enter your password";
                               }
+                              return null;
                             },
                             obscureText: true,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                InputDecoration.collapsed(hintText: 'Password'),
+                                const InputDecoration.collapsed(hintText: 'Password'),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
@@ -259,15 +265,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           backgroundColor: maincolor,
                         ),
                         onPressed: () {
-                          log("name =" + name.toString());
-                          log("phone =" + phone.toString());
-                          log("address =" + address.toString());
-                          log("username =" + username.toString());
-                          log("password ="+  password.toString());
-                          registration(
-                              name!, phone, address, username, password);
+                          if (_formkey.currentState!.validate()) {
+                            log("name =$name");
+                            log("phone =$phone");
+                            log("address =$address");
+                            log("username =$username");
+                            log("password =$password");
+                            registration(
+                                name!, phone, address, username, password);
+                          }
                         },
-                        child: Text(
+                        child: const Text(
                           "register",
                           style: TextStyle(
                             fontSize: 18,
@@ -280,11 +288,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "do you have an account?",
                   style: TextStyle(fontSize: 16),
                 ),
@@ -292,11 +300,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return LoginPage();
+                        return const LoginPage();
                       },
                     ));
                   },
-                  child: Text(
+                  child: const Text(
                     "login",
                     style: TextStyle(
                         fontSize: 16,

@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:sample/constants.dart';
+import 'package:sample/home.dart';
 import 'package:sample/registration.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,9 +30,9 @@ class _LoginPageState extends State<LoginPage> {
   void _loadCounter() async {
     final prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-    log("isLoggedIn = " + isLoggedIn.toString());
+    log("isLoggedIn = $isLoggedIn");
     if (isLoggedIn) {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
     }
   }
 
@@ -58,9 +59,10 @@ class _LoginPageState extends State<LoginPage> {
         prefs.setString("username", username);
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return HomePage();
+            return const HomePage();
           },
-        ));
+        ),
+        );
       } else {
         log("Login Failed");
       }
@@ -70,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
     return result;
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -79,8 +82,8 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 200),
-                Text(
+                const SizedBox(height: 200),
+                const Text(
                   "welcomeback",
                   style: TextStyle(
                     color: Colors.black,
@@ -88,28 +91,28 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
+                const Text(
                   "login with your username and password \n",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xffE8E8E8),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Center(
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
                           ),
-                          decoration: InputDecoration.collapsed(
+                          decoration: const InputDecoration.collapsed(
                             hintText: 'username',
                           ),
                           onChanged: (text) {
@@ -129,23 +132,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xffE8E8E8),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Center(
                         child: TextFormField(
                           obscureText: true,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
                           ),
-                          decoration: InputDecoration.collapsed(
+                          decoration: const InputDecoration.collapsed(
                             hintText: 'password',
                           ),
                           onChanged: (text) {
@@ -164,33 +167,32 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 processing == true
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: Color.fromARGB(255, 7, 2, 78),
                         ),
                       )
                     : Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width / 2,
                           height: 50,
                           child: TextButton(
                             style: TextButton.styleFrom(
-                              shape: RoundedRectangleBorder(
+                              foregroundColor: Colors.white, shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              primary: Colors.white,
                               backgroundColor: maincolor,
                             ),
                             onPressed: () {
                               if (_formkey.currentState!.validate()) {
-                                log("username = " + username.toString());
-                                log("password =" + password.toString());
+                                log("username = $username");
+                                log("password =$password");
                                 login(username.toString(), password.toString());
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "Login",
                               style: TextStyle(
                                 fontSize: 18,
@@ -200,11 +202,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Dont have an account? ",
                       style: TextStyle(fontSize: 16),
                     ),
@@ -215,12 +217,12 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return RegistrationPage();
+                              return const RegistrationPage();
                             },
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         "Go To Register",
                         style: TextStyle(
                             fontSize: 16,
