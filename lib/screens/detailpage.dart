@@ -19,11 +19,11 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("id = $id");
-    log("name = $name");
-    log("price = $price");
-    log("image = $image");
-    log("desc = $description");
+    log("id =" + id.toString());
+    log("name = " + name);
+    log("price =" + price);
+    log("image =" + image.toString());
+    log("desc = " + description.toString());
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
@@ -54,7 +54,7 @@ class DetailsPage extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return const HomePage();
+                              return HomePage();
                             },
                           ));
                         },
@@ -65,7 +65,7 @@ class DetailsPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(top: (20)),
               width: double.infinity,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   color: Color.fromARGB(255, 239, 240, 241),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
@@ -87,7 +87,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Rs.$price',
+                      'Rs.' + price,
                       style: TextStyle(
                           color: Colors.red.shade900,
                           fontSize: 16,
@@ -105,7 +105,7 @@ class DetailsPage extends StatelessWidget {
                           color: Colors.black),
                       textAlign: TextAlign.start,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                   ],
@@ -146,7 +146,7 @@ class DetailsPage extends StatelessWidget {
                 context
                     .read<Cart>()
                     .addItem(id, name, double.parse(price),image,1);
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   duration: Duration(seconds: 3),
                   behavior: SnackBarBehavior.floating,
                   padding: EdgeInsets.all(15.0),
@@ -171,7 +171,7 @@ class DetailsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: maincolor
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "Add to Cart",
                   style: TextStyle(fontSize: 20,color: Colors.white),

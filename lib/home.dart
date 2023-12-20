@@ -13,7 +13,7 @@ import 'package:sample/webservice/webservice.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,20 +29,20 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: maincolor,
-        title: const Text(
+        title: Text(
           "E-COMMERCE",
           style: TextStyle(
             color: Colors.white,fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             const Row(
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             FutureBuilder(future: Webservice().fetchCategory(),
@@ -88,13 +88,13 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromARGB(37,5,2,39),
+                            color: Color.fromARGB(37,5,2,39),
                           ),
                           child: Center(
                             child: Text(
                                snapshot.data![index].category!,
                               //  "Category Name",
-                               style: const TextStyle(
+                               style: TextStyle(
                                 color: maincolor,
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold
@@ -108,13 +108,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator());
               }
              }),
-             const SizedBox(
+             SizedBox(
                   height: 20,
                 ),
-                const Text(
+                Text(
                   "Offer Products",
                   style: TextStyle(
                     fontSize: 18,
@@ -122,19 +122,19 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                Expanded(child: 
                FutureBuilder(
                 future: Webservice().fetchProducts(),
                 builder: (context, snapshot) {
-                  log("product length ==${snapshot.data!.length}");
+                  log("product length ==" + snapshot.data!.length.toString());
                   if(snapshot.hasData) {
                     return Container(
                       color: Colors.white,
                 child: StaggeredGridView.countBuilder(
-                  physics:const BouncingScrollPhysics(),
+                  physics:BouncingScrollPhysics(),
                   shrinkWrap:true,
                   itemCount: snapshot.data!.length,
                   crossAxisCount:2,
@@ -165,12 +165,12 @@ class _HomePageState extends State<HomePage> {
                             child:Column(
                               children: [
                                 ClipRRect(
-                            borderRadius:const BorderRadius.only(
+                            borderRadius:BorderRadius.only(
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15)
                             ),
                             child:Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 minHeight: 100,maxHeight: 250
                               ),
                               child: Image(
@@ -203,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                         child:Text(
-                                            'Rs. ${product.price!}',
+                                            'Rs.' + product.price!.toString(),
                                             style: TextStyle(
                                               color: Colors.red.shade900,
                                               fontSize: 17,
@@ -222,10 +222,10 @@ class _HomePageState extends State<HomePage> {
                         
                   },
                   staggeredTileBuilder:(context) =>
-                  const StaggeredTile.fit(1)),
+                  StaggeredTile.fit(1)),
               );
   }else{
-    return const Center(child:CircularProgressIndicator());
+    return Center(child:CircularProgressIndicator());
   }
 }),
                ),

@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class OrderdetailsPage extends StatefulWidget {
-  const OrderdetailsPage({super.key});
+ const OrderdetailsPage({super.key});
 
 
 
@@ -33,7 +33,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
     setState(() {
       username = prefs.getString('username');
     });
-    log("isloggedin = $username");
+    log("isloggedin =" + username.toString());
   }
 
   @override
@@ -44,7 +44,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
         elevation: 0,
         backgroundColor: Colors.grey.shade100,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
@@ -52,7 +52,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Order Details",
           style: TextStyle(
             fontSize: 25,
@@ -67,7 +67,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   log(snapshot.data!.length.toString());
                   final orderDetails = snapshot.data![index];
@@ -75,11 +75,11 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                     padding: const EdgeInsets.all(10),
                     child: Card(
                       elevation: 0,
-                      color: const Color.fromARGB(15, 74, 20, 140),
+                      color: Color.fromARGB(15, 74, 20, 140),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
                       child: ExpansionTile(
-                        trailing: const Icon(Icons.arrow_drop_down),
+                        trailing: Icon(Icons.arrow_drop_down),
                         textColor: Colors.black,
                         collapsedTextColor: Colors.black,
                         iconColor: Colors.red,
@@ -90,12 +90,12 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                               DateFormat.yMMMEd().format(orderDetails.date),
                                
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
                             ),
                             Text(
@@ -107,11 +107,11 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "${orderDetails.totalamount}/-",
+                              orderDetails.totalamount.toString() + "/-",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 15,
@@ -126,10 +126,10 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                             itemCount: orderDetails.products.length,
                             shrinkWrap: true,
                             padding: const EdgeInsets.only(top: 25),
-                            physics: const NeverScrollableScrollPhysics(),
+                            physics: NeverScrollableScrollPhysics(),
                             separatorBuilder:
                                 (BuildContext context, int index) {
-                              return const SizedBox(
+                              return SizedBox(
                                 height: 10,
                               );
                             },
@@ -150,7 +150,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                                                 const EdgeInsets.only(left: 9),
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.all(
+                                                borderRadius: BorderRadius.all(
                                                     Radius.circular(20)),
                                                 image: DecorationImage(
                                                     image: NetworkImage(
@@ -208,9 +208,9 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                                                               .red.shade900),
                                                     ),
                                                     Text(
-                                                      "${orderDetails
+                                                      orderDetails
                                                               .products[index]
-                                                              .quantity}X",
+                                                              .quantity.toString() + "X",
                                                       style: TextStyle(
                                                           fontSize: 16,
                                                           fontWeight:
@@ -236,7 +236,7 @@ class _MyWidgetState extends State<OrderdetailsPage> {
                 },
               );
             }
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           }),

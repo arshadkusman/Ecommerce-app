@@ -8,7 +8,7 @@ import 'package:sample/login.dart';
 import 'package:http/http.dart' as http;
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key});
+  RegistrationPage({super.key});
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -61,10 +61,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 50,
             ),
-            const Text(
+            Text(
               "Register Account",
               style: TextStyle(
                 color: Colors.black,
@@ -72,8 +72,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text("complete your details \n"),
-            const SizedBox(height: 28),
+            Text("complete your details \n"),
+            SizedBox(height: 28),
             Form(
               key: _formkey,
               child: Column(
@@ -83,7 +83,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Color(0xffE8E8E8),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
@@ -96,11 +96,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 name = text;
                               });
                             },
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                const InputDecoration.collapsed(hintText: 'Name'),
+                                InputDecoration.collapsed(hintText: 'Name'),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "enter your name";
@@ -117,7 +117,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
@@ -139,11 +139,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               }
                               return null;
                             },
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                const InputDecoration.collapsed(hintText: 'phone'),
+                                InputDecoration.collapsed(hintText: 'phone'),
                           ),
                         ),
                       ),
@@ -154,7 +154,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: Container(
                       height: 100,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
@@ -168,11 +168,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 address = text;
                               });
                             },
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                const InputDecoration.collapsed(hintText: 'address'),
+                                InputDecoration.collapsed(hintText: 'address'),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "enter your address";
@@ -189,7 +189,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
@@ -201,11 +201,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 username = text;
                               });
                             },
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                const InputDecoration.collapsed(hintText: 'username'),
+                                InputDecoration.collapsed(hintText: 'username'),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "enter your username";
@@ -222,7 +222,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: Container(
                       height: 50,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color(0xffE8E8E8),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Padding(
@@ -241,17 +241,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               return null;
                             },
                             obscureText: true,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                             ),
                             decoration:
-                                const InputDecoration.collapsed(hintText: 'Password'),
+                                InputDecoration.collapsed(hintText: 'Password'),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
@@ -266,16 +266,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         ),
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
-                            log("name =$name");
-                            log("phone =$phone");
-                            log("address =$address");
-                            log("username =$username");
-                            log("password =$password");
+                            log("name = " + name.toString());
+                            log("phone =" + phone.toString());
+                            log("address =" + address.toString());
+                            log("username ="+ username.toString());
+                            log("password =" + password.toString());
                             registration(
                                 name!, phone, address, username, password);
                           }
                         },
-                        child: const Text(
+                        child: Text(
                           "register",
                           style: TextStyle(
                             fontSize: 18,
@@ -288,11 +288,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "do you have an account?",
                   style: TextStyle(fontSize: 16),
                 ),
@@ -300,11 +300,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return const LoginPage();
+                        return  LoginPage();
                       },
                     ));
                   },
-                  child: const Text(
+                  child: Text(
                     "login",
                     style: TextStyle(
                         fontSize: 16,

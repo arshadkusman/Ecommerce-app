@@ -25,10 +25,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             child: ListView(
       padding: EdgeInsets.zero,
       children: [
-        const SizedBox(
+        SizedBox(
           height: 50,
         ),
-        const Align(
+        Align(
           alignment: Alignment.center,
           child: Text(
             "E-COMMERCE",
@@ -36,40 +36,40 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 color: maincolor, fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        const Divider(),
-        const SizedBox(
+        Divider(),
+        SizedBox(
           height: 10,
         ),
         ListTile(
-          leading: const Icon(Icons.home),
-          title: const Text(
+          leading: Icon(Icons.home),
+          title: Text(
             "Home",
             style: TextStyle(fontSize: 15.0),
           ),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 15,
           ),
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => const HomePage())));
+                context, MaterialPageRoute(builder: ((context) => HomePage())));
           },
         ),
        ListTile(
           leading: badges.Badge(
             showBadge: context.read<Cart>().getItems.isEmpty ? false : true,
-            badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red),
+            badgeStyle: badges.BadgeStyle(badgeColor: Colors.red),
             badgeContent: Text(
               context.watch<Cart>().getItems.length.toString(),
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.shopping_cart,
               color: Colors.grey,
             ),
@@ -77,11 +77,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           
          
       
-          title: const Text(
+          title: Text(
             'Cart page',
             style: TextStyle(fontSize: 15.0),
           ),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 15,
           ),
@@ -96,34 +96,34 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           
       
         ListTile(
-          leading: const Icon(Icons.book_online),
-          title: const Text(
+          leading: Icon(Icons.book_online),
+          title: Text(
             "Order Details",
             style: TextStyle(
               fontSize: 15.0,
             ),
           ),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 15,
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const OrderdetailsPage()));
+                MaterialPageRoute(builder: (context) => OrderdetailsPage()));
           },
         ),
-        const Divider(),
+        Divider(),
         ListTile(
-          leading: const Icon(Icons.power_settings_new_rounded),
+          leading: Icon(Icons.power_settings_new_rounded),
           iconColor: Colors.red,
-          title: const Text(
+          title: Text(
             'Logout',
             style: TextStyle(
               fontSize: 15.0,
               
             ),
           ),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 15,
             color: Colors.grey,
@@ -132,7 +132,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             final prefs = await SharedPreferences.getInstance();
             prefs.setBool("isLoggedIn", false);
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                context, MaterialPageRoute(builder: (context) => LoginPage()));
           },
         ),
       ],

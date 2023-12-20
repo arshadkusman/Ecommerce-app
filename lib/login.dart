@@ -10,7 +10,6 @@ import 'package:sample/registration.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -30,9 +29,9 @@ class _LoginPageState extends State<LoginPage> {
   void _loadCounter() async {
     final prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-    log("isLoggedIn = $isLoggedIn");
+    log("isLoggedIn =" + isLoggedIn.toString());
     if (isLoggedIn) {
-      Navigator.push(context, MaterialPageRoute(builder: (_) => const HomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomePage()));
     }
   }
 
@@ -47,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
     };
 
     final response = await http.post(
-      Uri.parse("https://bootcamp.cyralearnings.com/registration.php"),
+      Uri.parse("https://bootcamp.cyralearnings.com/login.php"),
       body: loginData,
     );
     print(response.statusCode);
@@ -59,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
         prefs.setString("username", username);
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return const HomePage();
+            return  HomePage();
           },
         ),
         );
@@ -82,8 +81,8 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 200),
-                const Text(
+                SizedBox(height: 200),
+                Text(
                   "welcomeback",
                   style: TextStyle(
                     color: Colors.black,
@@ -91,17 +90,17 @@ class _LoginPageState extends State<LoginPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text(
+                Text(
                   "login with your username and password \n",
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 50),
+                SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color(0xffE8E8E8),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
@@ -109,10 +108,10 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Center(
                         child: TextFormField(
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
                           ),
-                          decoration: const InputDecoration.collapsed(
+                          decoration: InputDecoration.collapsed(
                             hintText: 'username',
                           ),
                           onChanged: (text) {
@@ -136,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Container(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color(0xffE8E8E8),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
@@ -145,10 +144,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: Center(
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 15,
                           ),
-                          decoration: const InputDecoration.collapsed(
+                          decoration: InputDecoration.collapsed(
                             hintText: 'password',
                           ),
                           onChanged: (text) {
@@ -167,9 +166,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30),
                 processing == true
-                    ? const Center(
+                    ? Center(
                         child: CircularProgressIndicator(
                           color: Color.fromARGB(255, 7, 2, 78),
                         ),
@@ -187,12 +186,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () {
                               if (_formkey.currentState!.validate()) {
-                                log("username = $username");
-                                log("password =$password");
+                                log("username =" + username.toString());
+                                log("password =" + password.toString());
                                 login(username.toString(), password.toString());
                               }
                             },
-                            child: const Text(
+                            child: Text(
                               "Login",
                               style: TextStyle(
                                 fontSize: 18,
@@ -202,11 +201,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Dont have an account? ",
                       style: TextStyle(fontSize: 16),
                     ),
@@ -217,12 +216,12 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const RegistrationPage();
+                              return RegistrationPage();
                             },
                           ),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Go To Register",
                         style: TextStyle(
                             fontSize: 16,

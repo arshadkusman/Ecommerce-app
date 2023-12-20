@@ -35,7 +35,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     setState(() {
       username = prefs.getString('username');
     });
-    log("isloggedin = $username");
+    log("isloggedin =" + username.toString());
   }
 
   orderPlace(
@@ -48,10 +48,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
     String phone,
   ) async {
     String jsondata = jsonEncode(cart);
-    log('jsondata =$jsondata');
+    log('jsondata =${jsondata}');
     final vm = Provider.of<Cart>(context, listen: false);
     final response = await http
-        .post(Uri.parse("${Webservice.mainurl}get_order_details.php"), body: {
+        .post(Uri.parse(Webservice.mainurl + "get_orderdetails.php"), body: {
       "username": username,
       "amount": amount,
       "paymentmethod": paymentmethod,
@@ -83,7 +83,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ));
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return const HomePage();
+            return HomePage();
           },
         ));
       }
@@ -109,7 +109,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Checkout",
           style: TextStyle(
             fontSize: 25,
@@ -138,7 +138,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           children: [
                             Row(
                               children: [
-                                const Text(
+                                Text(
                                   "Name : ",
                                   style: TextStyle(
                                       fontSize: 15,
@@ -147,12 +147,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 Text(name.toString())
                               ],
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
                             Row(
                               children: [
-                                const Text(
+                                Text(
                                   "Phone : ",
                                   style: TextStyle(
                                       fontSize: 15,
@@ -161,12 +161,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 Text(phone.toString())
                               ],
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
                             Row(
                               children: [
-                                const Text(
+                                Text(
                                   "Address : ",
                                   style: TextStyle(
                                       fontSize: 15,
@@ -188,11 +188,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       ),
                     );
                   }
-                  return const CircularProgressIndicator();
+                  return CircularProgressIndicator();
                 },
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             RadioListTile(
@@ -205,11 +205,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   paymentmethod = 'Cash on delivery';
                 });
               },
-              title: const Text(
+              title: Text(
                 'Cash on delivery',
-                // style: TextStyle(fontFamily: "muli"),
+                //style: TextStyle(fontFamily: "muli"),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Pay cash at Home',
                 // style: TextStyle(fontFamily: "muli"),
               ),
@@ -224,11 +224,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   paymentmethod = 'Online';
                 });
               },
-              title: const Text(
+              title: Text(
                 'Pay Now',
                 // style: TextStyle(fontFamily: "muli"),
               ),
-              subtitle: const Text(
+              subtitle: Text(
                 'Online Payment',
                 // style: TextStyle(fontFamily: "muli"),
               ),
@@ -267,7 +267,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               borderRadius: BorderRadius.circular(20),
               color: maincolor,
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 "Checkout",
                 style: TextStyle(fontSize: 20, color: Colors.white),

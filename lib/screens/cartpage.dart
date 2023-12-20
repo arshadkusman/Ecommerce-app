@@ -8,7 +8,7 @@ import 'package:sample/screens/checkoutpage.dart';
 class CartPage extends StatelessWidget {
   List<CartProduct> cartlist =[];
 
-  CartPage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CartPage extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.grey.shade100,
           leading: IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
             ),
@@ -27,7 +27,7 @@ class CartPage extends StatelessWidget {
             },
           ),
           
-          title: const Text(
+          title: Text(
             "cart",
             style: TextStyle(
               fontSize: 25,
@@ -36,13 +36,13 @@ class CartPage extends StatelessWidget {
           ),
           actions: [
             context.watch<Cart>().getItems.isEmpty
-            ? const SizedBox()
+            ? SizedBox()
             :
             IconButton(
               onPressed: () {
                 context.read<Cart>().clearCart();
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.delete,
                 color: Color.fromARGB(255, 56, 55, 55),
               ),
@@ -51,7 +51,7 @@ class CartPage extends StatelessWidget {
         ),
          body: 
          context.watch<Cart>().getItems.isEmpty?
-          const Center(
+          Center(
           child: Text("Empty cart"),
         )
         : 
@@ -80,7 +80,7 @@ class CartPage extends StatelessWidget {
                        child: Container(
                         decoration: BoxDecoration(
                           // color: Colors.amber,
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
                           image: DecorationImage(
                             image: NetworkImage(
                               cartlist[index].imageUrl
@@ -141,11 +141,11 @@ class CartPage extends StatelessWidget {
                                     : cart.reduceByOne(cartlist[index]);
                                   },
                                   icon:cartlist[index].qty == 1?
-                                  const Icon(
+                                  Icon(
                                     Icons.delete,
                                     size: 18,
                                   )
-                                  : const Icon(
+                                  : Icon(
                                     Icons.minimize_rounded,
                                     size: 18,
                                   )
@@ -162,7 +162,7 @@ class CartPage extends StatelessWidget {
                                   IconButton(onPressed:() {
                                     cart.increment(cartlist[index]);
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add,
                                     size: 18,
                                   ),
@@ -190,7 +190,7 @@ class CartPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Total :${context.watch<Cart>().totalPrice}",
+              "Total :" + context.watch<Cart>().totalPrice.toString(),
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.red.shade900,
@@ -229,7 +229,7 @@ class CartPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   color: maincolor
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "Order Now",
                     style: TextStyle(
